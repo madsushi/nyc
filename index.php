@@ -8,7 +8,7 @@
     <?php include_once("script/sql.php");
 
     	$sqltestquery = mysqli_query($sqlcon, "select * from polish");
-    	$sqltestrow = mysqli_fetch_assoc($sqltestquery);
+    	
 
     ?>
     <!-- Configure favicons -->
@@ -21,16 +21,25 @@
     <title>Nail Your Colors!</title>
 	</head>
 
-	<body>
+	<body bgcolor="black">
+		<p style="color:white">
 		<?php include_once("script/analyticstracking.php") ?>
+		
 		Hello world!
+
+		<br><br>
 
 		<?php
 
-			print_r($sqltestrow["polish_subbrand"]);
+			while ($sqltestrow = mysqli_fetch_assoc($sqltestquery)) {
+
+				echo $sqltestrow["polish_brand"] . " - " . $sqltestrow["polish_name"] . " - " . $sqltestrow["polish_number"] . " - " . $sqltestrow["polish_primary_color"] . "<br>";
+
+			}
 
 		?>
-
+		</p>
 	</body>
   
 </html>
+
