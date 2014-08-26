@@ -1,45 +1,92 @@
-<html>
+<html lang="en">
 
 <!-- oh god what is this I am not good at computers -->
 
-	<head>
-    <!-- Include SQL accounts -->
-    <?php include_once("data/sql.data") ?>
-    <?php include_once("script/sql.php");
+  <head>
+    
+    <?php
 
-    	$sqltestquery = mysqli_query($sqlcon, "select * from polish");
-    	
+      // Include Boostrap settings
+      require "script/bootstrap.php";
 
+      // Configure favicons
+      require "script/favicon.php";
+
+      // Include SQL accounts
+      require "data/sql.data";
+      require "script/sql.php";
+      $sqltestquery = mysqli_query($sqlcon, "select * from polish");
+      
     ?>
-    <!-- Configure favicons -->
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-		<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-		<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-		<meta name="msapplication-TileColor" content="#00aba9">
     
     <title>Nail Your Colors!</title>
-	</head>
 
-	<body bgcolor="black">
-		<p style="color:white">
-		<?php include_once("script/analyticstracking.php") ?>
-		
-		Hello world!
+  </head>
 
-		<br><br>
-
-		<?php
-
-			while ($sqltestrow = mysqli_fetch_assoc($sqltestquery)) {
-
-				echo $sqltestrow["polish_brand"] . " - " . $sqltestrow["polish_name"] . " - " . $sqltestrow["polish_number"] . " - " . $sqltestrow["polish_primary_color"] . "<br>";
-
-			}
-
-		?>
-		</p>
-	</body>
   
-</html>
+  <!-- neck goes here -->
 
+
+  <body>
+
+    <?php require "script/navbar.php"; ?>
+
+
+      <?php require "script/analyticstracking.php"; ?>
+      
+
+    <div class="container">
+      <div class="row">
+        <div class="center-block">
+          <table class="table table-hover table-bordered table-striped">
+              <thead>
+                  <tr>
+                      <th>Brand</th>
+                      <th>Name</th>
+                      <th>ID #</th>
+                      <th>Finish</th>
+                      <th>Color</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                    <?php
+
+                      while ($sqltestrow = mysqli_fetch_assoc($sqltestquery)) {
+
+                        if($sqltestrow["polish_glitter_type"] !== ""){
+
+                          $glitter = " (" . $sqltestrow["polish_glitter_type"] .")";
+
+                        } else {
+
+                          $glitter = "";
+
+                        }
+
+                        echo "<tr>";
+                        echo "<td>" . $sqltestrow["polish_brand"] . "</td>";
+                        echo "<td>" . $sqltestrow["polish_name"] . "</td>";
+                        echo "<td>" . $sqltestrow["polish_number"] . "</td>";
+                        echo "<td>" . $sqltestrow["polish_finish"] . $glitter . "</td>";
+                        echo "<td>" . $sqltestrow["polish_color_tone"] . " " . $sqltestrow["polish_color_mod"] . " " . $sqltestrow["polish_primary_color"] . "/" . $sqltestrow["polish_secondary_color"] . "</td>";
+                        echo "</tr>";
+
+                      }
+
+                    ?>
+
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- jQuery and Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>   
+
+  </body>
+
+</html>
