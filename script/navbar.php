@@ -8,25 +8,13 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Nail Your Colors</a>
+    <a class="navbar-brand" href="/">Nail Your Colors</a>
   </div>
+
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <ul class="nav navbar-nav">
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Polish Database <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Color Wheel</a></li>
-      <li><a href="#">New Additions</a></li>
-      <li><a href="#">Most Favorited</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Start A Collection</a></li>
-      <li class="divider"></li>
-      <li><a href="#">NYC Forums</a></li>
-      </ul>
-    </li>
-    </ul>
+    
 
     <ul class="nav navbar-nav navbar-right">
     <form class="navbar-form navbar-left" role="search">
